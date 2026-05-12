@@ -1,0 +1,12 @@
+# Chặn các thư viện nặng
+node_modules/
+frontend/node_modules/
+backend/node_modules/
+
+# Chặn các file cấu hình bảo mật cá nhân
+.env
+.env.local
+
+# Chặn các file rác của hệ điều hành
+.DS_Store
+dist/
