@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
     avatarUrl: { type: String, default: "" },
     phone: { type: String },
     address: { type: String },
-    role: { type: String, enum: ["user", "admin", "shipper"], default: "user" },
+    role: { type: String, enum: ["user", "admin"], default: "user" },
     status: {
       type: String,
       enum: ["unverified", "active", "banned"],

@@ -29,8 +29,6 @@ const fieldLabelMap = {
   sellerId: "Mã người bán",
   orderId: "Mã đơn hàng",
   addressId: "Mã địa chỉ",
-  shipperId: "Mã shipper",
-  trackingCode: "Mã vận đơn",
   fullName: "Họ tên",
   province: "Tỉnh/Thành phố",
   district: "Quận/Huyện",
@@ -54,10 +52,6 @@ const fieldLabelMap = {
   shippingFee: "Phí vận chuyển",
   isFreeShip: "Miễn phí vận chuyển",
   quantity: "Số lượng tồn",
-  deliveryFee: "Phí giao hàng",
-  pickupAt: "Thời điểm lấy hàng",
-  deliveredAt: "Thời điểm giao hàng",
-  failedAt: "Thời điểm giao thất bại",
 };
 
 const normalizeMessage = (detail) => {
