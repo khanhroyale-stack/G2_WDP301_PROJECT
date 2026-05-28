@@ -6,6 +6,7 @@ import {
   SquarePen,
   ReceiptText,
   Package,
+  Truck,
   Heart,
   ShoppingCart,
   HandHeart,
@@ -68,6 +69,7 @@ export default function Header() {
     { to: "/addresses", label: "Địa chỉ", icon: MapPinned, private: true },
     { to: "/profile", label: "Hồ sơ", icon: UserRound, private: true },
     { to: "/admin", label: "Quản trị", icon: Shield, private: true, adminOnly: true },
+    { to: "/shipper", label: "Shipper", icon: Truck, private: true, shipperOnly: true },
   ];
 
   return (
@@ -130,6 +132,14 @@ export default function Header() {
               Admin
             </Link>
           )}
+          {user?.role === "shipper" && (
+            <Link
+              to="/shipper"
+              className="text-sm font-semibold text-slate-900 hover:text-emerald-600"
+            >
+              Shipper
+            </Link>
+          )}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -170,6 +180,7 @@ export default function Header() {
             {navItems
               .filter((item) => !item.private || user)
               .filter((item) => !item.adminOnly || user?.role === "admin")
+              .filter((item) => !item.shipperOnly || user?.role === "shipper")
               .map((item) => {
                 const Icon = item.icon;
                 const isActive = item.to === "/"

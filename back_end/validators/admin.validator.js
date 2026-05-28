@@ -11,6 +11,6 @@ export const updateUserStatusSchema = Joi.object({
 
 export const adminUsersQuerySchema = Joi.object({
   status: Joi.string().valid("active", "banned", "unverified").optional(),
-  role: Joi.string().valid("user", "admin").optional(),
+  role: Joi.string().valid("user", "admin", "shipper").optional(),
   search: Joi.string().trim().max(120).optional(),
 });

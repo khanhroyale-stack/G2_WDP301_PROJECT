@@ -10,6 +10,7 @@ const statusLabels = {
 const roleLabels = {
   admin: "Quản trị",
   user: "Người dùng",
+  shipper: "Shipper",
 };
 
 export default function UserManagement() {
@@ -91,6 +92,7 @@ export default function UserManagement() {
           <option value="">Tất cả vai trò</option>
           <option value="admin">quản trị</option>
           <option value="user">người dùng</option>
+          <option value="shipper">shipper</option>
         </select>
         <button onClick={fetchUsers} className="rounded-lg bg-slate-900 px-3 py-2 font-semibold text-white">Lọc</button>
       </div>

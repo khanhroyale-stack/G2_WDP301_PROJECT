@@ -15,6 +15,7 @@ import addressRoutes from "./routes/address.routes.js";
 import orderRoutes from "./routes/order.routes.js";
 import favoriteRoutes from "./routes/favorite.routes.js";
 import reviewRoutes from "./routes/review.routes.js";
+import shipperRoutes from "./routes/shipper.routes.js";
 // import { startAutoModeration } from "./jobs/autoModerate.js";
 
 dotenv.config();
@@ -48,6 +49,7 @@ app.use("/api/addresses", addressRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/favorites", favoriteRoutes);
 app.use("/api/reviews", reviewRoutes);
+app.use("/api/shipper", shipperRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

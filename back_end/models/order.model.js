@@ -58,6 +58,25 @@ const orderSchema = new mongoose.Schema(
       enum: ["pending", "confirmed", "shipping", "completed", "cancelled"],
       default: "pending",
     },
+    shipperId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null,
+    },
+    inspectionStatus: {
+      type: String,
+      enum: ["pending", "approved", "rejected"],
+      default: "pending",
+    },
+    inspectionNote: {
+      type: String,
+      default: "",
+      trim: true,
+    },
+    inspectedAt: {
+      type: Date,
+      default: null,
+    },
     paymentStatus: {
       type: String,
       enum: ["pending", "paid", "failed", "refunded"],

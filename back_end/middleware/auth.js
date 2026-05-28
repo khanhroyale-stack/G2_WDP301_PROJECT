@@ -41,3 +41,11 @@ export const isAdmin = (req, res, next) => {
     res.status(403).json({ message: "Bạn không có quyền truy cập chức năng quản trị" });
   }
 };
+
+export const isShipper = (req, res, next) => {
+  if (req.user && req.user.role === "shipper") {
+    next();
+  } else {
+    res.status(403).json({ message: "Bạn không có quyền truy cập chức năng shipper" });
+  }
+};

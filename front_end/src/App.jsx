@@ -23,6 +23,8 @@ import CharityDetail from "./pages/CharityDetail";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminRoute from "./components/AdminRoute";
 import UserRoute from "./components/UserRoute";
+import ShipperRoute from "./components/ShipperRoute";
+import ShipperOrders from "./pages/ShipperOrders";
 
 function App() {
   return (
@@ -120,6 +122,15 @@ function App() {
               <AdminDashboard />
             </AdminRoute>
           } 
+        />
+
+        <Route
+          path="/shipper"
+          element={
+            <ShipperRoute>
+              <ShipperOrders />
+            </ShipperRoute>
+          }
         />
       </Routes>
     </Router>
