@@ -54,7 +54,11 @@ export default function StudentUsedGoodsHomepage() {
 
   const fallbackPostImage =
     "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=900&q=80";
-
+  const getImageUrl = (imagePath) => {
+    if (!imagePath) return fallbackPostImage;
+    if (imagePath.startsWith("http")) return imagePath; // URL đầy đủ → giữ nguyên
+    return `/${imagePath.replace(/^\//, "")}`; // relative path → thêm /
+  };
   const steps = [
     {
       title: "Đăng món đồ",
@@ -264,9 +268,10 @@ export default function StudentUsedGoodsHomepage() {
                   >
                     <div className="min-w-[260px] overflow-hidden rounded-3xl bg-white shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-lg sm:min-w-[320px] md:min-w-[360px]">
                       <img
-                        src={post.images?.[0] || fallbackPostImage}
+                        src={getImageUrl(post.images?.[0])}
                         alt={post.title}
                         className="h-56 w-full object-cover"
+                        onError={(e) => { e.target.onerror = null; e.target.src = fallbackPostImage; }}
                       />
                       <div className="p-5">
                         <div className="mb-3 flex items-center justify-between gap-3">
@@ -386,7 +391,7 @@ export default function StudentUsedGoodsHomepage() {
               </div>
             )}
           </div>
-          
+
           <div className="mt-8 text-center md:hidden">
             <Link to="/charities" className="rounded-xl border border-emerald-300 px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-100 inline-block w-full">
               Xem tất cả chiến dịch
