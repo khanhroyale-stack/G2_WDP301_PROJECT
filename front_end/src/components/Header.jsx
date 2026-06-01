@@ -9,7 +9,6 @@ import {
   Truck,
   Heart,
   ShoppingCart,
-  HandHeart,
   MapPinned,
   UserRound,
   Shield,
@@ -65,7 +64,6 @@ export default function Header() {
     { to: "/orders", label: "Đơn hàng", icon: Package, private: true },
     { to: "/favorites", label: "Yêu thích", icon: Heart, private: true },
     { to: "/cart", label: "Giỏ hàng", icon: ShoppingCart, private: true },
-    { to: "/charities", label: "Từ thiện", icon: HandHeart, private: false, accent: true },
     { to: "/addresses", label: "Địa chỉ", icon: MapPinned, private: true },
     { to: "/profile", label: "Hồ sơ", icon: UserRound, private: true },
     { to: "/admin", label: "Quản trị", icon: Shield, private: true, adminOnly: true },
@@ -82,7 +80,7 @@ export default function Header() {
           <div>
             <p className="text-lg font-bold">GreenLoop</p>
             <p className="text-xs text-slate-500">
-              Nền tảng bán, đổi đồ cũ và hỗ trợ các hoạt động từ thiện.
+              Nền tảng bán, đổi đồ cũ thân thiện với cộng đồng.
             </p>
           </div>
         </Link>
@@ -110,12 +108,6 @@ export default function Header() {
               Giao Dịch
             </Link>
           )}
-          <Link
-            to="/charities"
-            className="text-sm text-slate-600 hover:text-slate-900"
-          >
-            Từ thiện
-          </Link>
           {user && (
             <Link
               to="/profile"
@@ -191,13 +183,12 @@ export default function Header() {
                   <Link
                     key={item.to}
                     to={item.to}
-                    className={`relative inline-flex items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold transition ${
-                      isActive
-                        ? "bg-slate-900 text-white"
-                        : item.accent
+                    className={`relative inline-flex items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold transition ${isActive
+                      ? "bg-slate-900 text-white"
+                      : item.accent
                         ? "text-emerald-700 hover:bg-emerald-50"
                         : "text-slate-700 hover:bg-slate-100"
-                    }`}
+                      }`}
                   >
                     <Icon size={14} />
                     <span>{item.label}</span>

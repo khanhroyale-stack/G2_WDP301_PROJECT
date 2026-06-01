@@ -22,7 +22,6 @@ const fieldLabelMap = {
   quantity: "Số lượng",
   type: "Loại giao dịch",
   postId: "Mã bài đăng",
-  charityId: "Mã chiến dịch",
   donorName: "Tên người ủng hộ",
   message: "Nội dung",
   goalAmount: "Mục tiêu quyên góp",

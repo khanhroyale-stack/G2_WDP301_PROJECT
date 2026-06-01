@@ -16,10 +16,6 @@ import Addresses from "./pages/Addresses";
 import Orders from "./pages/Orders";
 import Favorites from "./pages/Favorites";
 import Reviews from "./pages/Reviews";
-
-import Charities from "./pages/Charities";
-import CreateCharity from "./pages/CreateCharity";
-import CharityDetail from "./pages/CharityDetail";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminRoute from "./components/AdminRoute";
 import UserRoute from "./components/UserRoute";
@@ -106,22 +102,17 @@ function App() {
             </UserRoute>
           }
         />
-        
-        <Route path="/charities" element={<Charities />} />
-        <Route path="/create-charity" element={<CreateCharity />} />
-        <Route path="/charity/:id" element={<CharityDetail />} />
-
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        <Route 
-          path="/admin" 
+        <Route
+          path="/admin"
           element={
             <AdminRoute>
               <AdminDashboard />
             </AdminRoute>
-          } 
+          }
         />
 
         <Route

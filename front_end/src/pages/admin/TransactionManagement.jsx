@@ -110,7 +110,7 @@ export default function TransactionManagement() {
                   <td className="px-4 py-3">{money.format(Number(tx.commissionAmount || 0))}</td>
                   <td className="px-4 py-3">{money.format(Number(tx.netAmount || 0))}</td>
                   <td className="px-4 py-3 text-sm text-slate-700">{tx.payerId?.email || "khách"}</td>
-                  <td className="px-4 py-3 text-sm text-slate-700">{tx.postId?.title || tx.charityId?.title || "-"}</td>
+                  <td className="px-4 py-3 text-sm text-slate-700">{tx.postId?.title || "-"}</td>
                   <td className="px-4 py-3"><span className="rounded-full bg-slate-100 px-2 py-1 text-xs font-semibold uppercase">{statusLabels[tx.status] || tx.status}</span></td>
                   <td className="px-4 py-3">
                     {tx.type === "sale" && tx.status === "pending" ? (

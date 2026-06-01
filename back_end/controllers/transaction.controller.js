@@ -1,9 +1,7 @@
 import Transaction from "../models/transaction.model.js";
 import Post from "../models/post.models.js";
-import Charity from "../models/charity.model.js";
 
 const DEFAULT_SALE_COMMISSION = Number(process.env.SALE_COMMISSION_RATE || 5);
-const DEFAULT_DONATION_COMMISSION = Number(process.env.DONATION_COMMISSION_RATE || 0);
 
 export const createTransaction = async (req, res) => {
   try {
@@ -11,12 +9,11 @@ export const createTransaction = async (req, res) => {
       type,
       amount,
       postId,
-      charityId,
       paymentMethod = "manual",
       metadata = {},
     } = req.body;
 
-    if (!["sale", "donation"].includes(type)) {
+    if (type !== "sale") {
       return res.status(400).json({ message: "Loại giao dịch không hợp lệ" });
     }
 
@@ -25,7 +22,7 @@ export const createTransaction = async (req, res) => {
       return res.status(400).json({ message: "Số tiền phải lớn hơn 0" });
     }
 
-    let commissionRate = type === "sale" ? DEFAULT_SALE_COMMISSION : DEFAULT_DONATION_COMMISSION;
+    const commissionRate = DEFAULT_SALE_COMMISSION;
     let sellerId = null;
 
     if (type === "sale") {
@@ -51,20 +48,6 @@ export const createTransaction = async (req, res) => {
       await post.save();
     }
 
-    if (type === "donation") {
-      if (!charityId) {
-        return res.status(400).json({ message: "Thiếu mã chiến dịch cho giao dịch ủng hộ" });
-      }
-
-      const charity = await Charity.findById(charityId);
-      if (!charity) {
-        return res.status(404).json({ message: "Không tìm thấy chiến dịch" });
-      }
-
-      charity.currentAmount = (charity.currentAmount || 0) + numericAmount;
-      await charity.save();
-    }
-
     const commissionAmount = (numericAmount * commissionRate) / 100;
     const netAmount = numericAmount - commissionAmount;
 
@@ -79,7 +62,6 @@ export const createTransaction = async (req, res) => {
       payerId: req.user?.id || null,
       sellerId,
       postId: postId || null,
-      charityId: charityId || null,
       paymentMethod,
       metadata,
       status: txStatus,
@@ -133,7 +115,6 @@ export const getMyTransactions = async (req, res) => {
       $or: [{ payerId: req.user.id }, { sellerId: req.user.id }],
     })
       .populate("postId", "title")
-      .populate("charityId", "title")
       .populate("payerId", "username full_name email")
       .populate("sellerId", "username full_name email")
       .sort({ createdAt: -1 });
@@ -156,7 +137,6 @@ export const getAllTransactions = async (req, res) => {
       .populate("payerId", "username email")
       .populate("sellerId", "username email")
       .populate("postId", "title")
-      .populate("charityId", "title")
       .sort({ createdAt: -1 });
 
     res.json(transactions);

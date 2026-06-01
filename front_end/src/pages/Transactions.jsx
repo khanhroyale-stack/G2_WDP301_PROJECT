@@ -105,16 +105,15 @@ export default function Transactions() {
                     <td className="px-4 py-3">{money.format(Number(tx.amount || 0))}</td>
                     <td className="px-4 py-3">{money.format(Number(tx.commissionAmount || 0))}</td>
                     <td className="px-4 py-3">{money.format(Number(tx.netAmount || 0))}</td>
-                    <td className="px-4 py-3 text-sm text-slate-600">{tx.postId?.title || tx.charityId?.title || "-"}</td>
+                    <td className="px-4 py-3 text-sm text-slate-600">{tx.postId?.title || "-"}</td>
                     <td className="px-4 py-3 text-sm text-slate-600">{methodLabels[tx.paymentMethod] || tx.paymentMethod || "Thủ công"}</td>
                     <td className="px-4 py-3">
-                      <span className={`rounded-full px-2 py-1 text-xs font-semibold uppercase ${
-                        tx.status === "pending"
+                      <span className={`rounded-full px-2 py-1 text-xs font-semibold uppercase ${tx.status === "pending"
                           ? "bg-amber-100 text-amber-700"
                           : tx.status === "paid"
-                          ? "bg-emerald-100 text-emerald-700"
-                          : "bg-slate-100 text-slate-700"
-                      }`}>{statusLabels[tx.status] || tx.status}</span>
+                            ? "bg-emerald-100 text-emerald-700"
+                            : "bg-slate-100 text-slate-700"
+                        }`}>{statusLabels[tx.status] || tx.status}</span>
                     </td>
                     <td className="px-4 py-3">
                       {canConfirm(tx) ? (

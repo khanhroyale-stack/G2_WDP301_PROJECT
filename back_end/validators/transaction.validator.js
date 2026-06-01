@@ -2,15 +2,10 @@ import Joi from "joi";
 import { objectIdSchema } from "../middleware/validate.js";
 
 export const createTransactionSchema = Joi.object({
-  type: Joi.string().valid("sale", "donation").required(),
+  type: Joi.string().valid("sale").required(),
   amount: Joi.number().min(1).max(1000000000).required(),
   postId: Joi.when("type", {
     is: "sale",
-    then: objectIdSchema,
-    otherwise: Joi.forbidden(),
-  }),
-  charityId: Joi.when("type", {
-    is: "donation",
     then: objectIdSchema,
     otherwise: Joi.forbidden(),
   }),
@@ -19,7 +14,7 @@ export const createTransactionSchema = Joi.object({
 });
 
 export const transactionsQuerySchema = Joi.object({
-  type: Joi.string().valid("sale", "donation").optional(),
+  type: Joi.string().valid("sale").optional(),
   status: Joi.string().valid("pending", "paid", "failed", "refunded").optional(),
 });
 

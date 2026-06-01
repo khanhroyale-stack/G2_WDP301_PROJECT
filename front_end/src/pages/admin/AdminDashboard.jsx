@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import AdminSidebar from "./AdminSidebar";
-import CharityManagement from "./CharityManagement";
 import PostManagement from "./PostManagement";
 import AdminStats from "./AdminStats";
 import UserManagement from "./UserManagement";
@@ -20,7 +19,6 @@ export default function AdminDashboard() {
       {/* Main Content Area */}
       <main className="flex-1 p-8 overflow-y-auto">
         {activeTab === "overview" && <AdminStats />}
-        {activeTab === "charity" && <CharityManagement />}
         {activeTab === "post" && <PostManagement />}
         {activeTab === "users" && <UserManagement />}
         {activeTab === "reports" && <ReportManagement />}

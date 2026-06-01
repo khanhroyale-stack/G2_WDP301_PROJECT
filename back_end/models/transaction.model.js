@@ -4,7 +4,7 @@ const transactionSchema = new mongoose.Schema(
   {
     type: {
       type: String,
-      enum: ["sale", "donation"],
+      enum: ["sale"],
       required: true,
     },
     amount: {
@@ -41,11 +41,6 @@ const transactionSchema = new mongoose.Schema(
     postId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Post",
-      required: false,
-    },
-    charityId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Charity",
       required: false,
     },
     orderId: {

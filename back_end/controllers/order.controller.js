@@ -79,7 +79,6 @@ export const checkoutFromCart = async (req, res) => {
         sellerId: item.sellerId,
         postId: item.postId,
         orderId: order._id,
-        charityId: null,
         status: paymentMethod === "manual" ? "pending" : "paid",
         paymentMethod,
         metadata: { flow: "order-checkout" },
